@@ -5,10 +5,10 @@
   "author": "yesixuan",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
-    "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
-    "generate": "nuxt generate",
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server -- -c build/nuxt.config.js",
+    "build": "nuxt build -c build/nuxt.config.js",
+    "start": "cross-env NODE_ENV=production node server/index.js -- -c build/nuxt.config.js",
+    "generate": "nuxt generate -c build/nuxt.config.js",
     "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
   },
