@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <div>
+    <div class="wrapper">
       demo
     </div>
   </section>
@@ -16,5 +16,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
+@import "./index.styl"
 </style>

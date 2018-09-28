@@ -1,7 +1,11 @@
 const pkg = require('../package')
-const { extractCSS } = require('./style.config')
+
+const commonConfig = require('./common.build')
+const prodConfig = require('./prod.build')
+const devConfig = require('./dev.build')
 
 const isDev = process.env.NODE_ENV === 'development'
+const envConfig = isDev ? devConfig : prodConfig
 
 module.exports = {
   mode: 'universal',
@@ -15,28 +19,19 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   loading: { color: '#fff' },
-  css: ['~/assets/css/global/index.styl'],
+  css: ['assets/css/global/index.styl'],
   plugins: [],
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios'
   ],
+  vendor: ['vue-router', '@nuxtjs/axios'],
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
   srcDir: 'client/',
   build: {
-    ...extractCSS(isDev),
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
+    ...commonConfig,
+    ...envConfig
   }
 }
