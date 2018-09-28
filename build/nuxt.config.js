@@ -1,4 +1,7 @@
 const pkg = require('../package')
+const { extractCSS } = require('./style.config')
+
+const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
   mode: 'universal',
@@ -12,7 +15,7 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   loading: { color: '#fff' },
-  css: [],
+  css: ['~/assets/css/global/index.styl'],
   plugins: [],
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
@@ -23,6 +26,7 @@ module.exports = {
   },
   srcDir: 'client/',
   build: {
+    ...extractCSS(isDev),
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
