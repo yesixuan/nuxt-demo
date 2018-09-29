@@ -20,7 +20,12 @@ module.exports = {
   },
   loading: { color: '#fff' },
   css: ['assets/css/global/index.styl'],
-  plugins: [],
+  plugins: [
+    {
+      src: '~/plugins/index.js',
+      ssr: false
+    }
+  ],
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios'

@@ -14,14 +14,12 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0",
     "@nuxtjs/axios": "^5.0.0",
     "cross-env": "^5.2.0",
     "koa": "^2.5.2",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.1.0",
     "babel-eslint": "^8.2.1",
     "eslint": "^5.0.1",
     "eslint-config-prettier": "^3.1.0",
