@@ -17,5 +17,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "./index.styl"
+  .wrapper
+    font-size $hehe // 这个变量来自 style-resources-loader 的自动注入
 </style>

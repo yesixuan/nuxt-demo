@@ -1,7 +1,7 @@
 module.exports = {
   // css 变量注入
   styleResources: {
-    sytl: './client/assets/css/global/variables.styl'
+    stylus: './client/assets/css/global/variables.styl'
   },
   extend(config, { isDev, isServer, isClient }) {
     const {
