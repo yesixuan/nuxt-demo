@@ -26,7 +26,7 @@ module.exports = {
       ssr: false
     }
   ],
-  modules: ['@nuxtjs/axios', '~/modules/test.js'],
+  modules: ['nuxt-ts', '@nuxtjs/axios', '~/modules/test.js'],
   vendor: ['vue-router', '@nuxtjs/axios'],
   axios: {
     // See https://github.com/nuxt-community/axios-module#options

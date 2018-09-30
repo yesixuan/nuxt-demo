@@ -6,12 +6,19 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   components: {},
   mounted() {
     // 这个配置文件在配置文件以及项目代码中都可以使用
-    console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+    // console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+    this.hello()
+  },
+  methods: {
+    hello(): string {
+      console.log('hehe')
+      return 'hello ts'
+    }
   }
 }
 </script>

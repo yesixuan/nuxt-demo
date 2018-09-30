@@ -17,7 +17,8 @@
     "@nuxtjs/axios": "^5.0.0",
     "cross-env": "^5.2.0",
     "koa": "^2.5.2",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "nuxt-ts": "^0.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
@@ -29,7 +30,9 @@
     "nodemon": "^1.11.0",
     "prettier": "1.14.3",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2"
+    "stylus-loader": "^3.0.2",
+    "ts-loader": "^5.2.1",
+    "typescript": "^3.1.1"
   },
   "browserslist": [
     "ie >= 9",
