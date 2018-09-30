@@ -18,7 +18,9 @@
     "cross-env": "^5.2.0",
     "koa": "^2.5.2",
     "nuxt": "^2.0.0",
-    "nuxt-ts": "^0.0.3"
+    "nuxt-property-decorator": "^1.2.0",
+    "nuxt-ts": "^0.0.3",
+    "vuex-class": "^0.3.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

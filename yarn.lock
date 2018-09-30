@@ -4154,6 +4154,13 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
+nuxt-property-decorator@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/nuxt-property-decorator/-/nuxt-property-decorator-1.2.0.tgz#bdc0ed858ab2b0d70ca9b59ba56a910ff6314144"
+  dependencies:
+    reflect-metadata "^0.1.12"
+    vue-class-component "^6.0.2"
+
 nuxt-ts@^0.0.3:
   version "0.0.3"
   resolved "https://registry.npmjs.org/nuxt-ts/-/nuxt-ts-0.0.3.tgz#91e59eed7565f086e84e8a892092911112aa9f6a"
@@ -5304,6 +5311,10 @@ reduce-css-calc@^2.0.0:
     css-unit-converter "^1.1.1"
     postcss-value-parser "^3.3.0"
 
+reflect-metadata@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.12.tgz#311bf0c6b63cd782f228a81abe146a2bfa9c56f2"
+
 regenerate-unicode-properties@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/regenerate-unicode-properties/-/regenerate-unicode-properties-7.0.0.tgz#107405afcc4a190ec5ed450ecaa00ed0cafa7a4c"
@@ -6360,6 +6371,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-class-component@^6.0.2:
+  version "6.2.0"
+  resolved "https://registry.npmjs.org/vue-class-component/-/vue-class-component-6.2.0.tgz#7adb1daa9a868c75f30f97f33f4f1b94aee62089"
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
@@ -6435,6 +6450,10 @@ vue-template-es2015-compiler@^1.6.0:
 vue@^2.5.17:
   version "2.5.17"
   resolved "https://registry.npmjs.org/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
+
+vuex-class@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.npmjs.org/vuex-class/-/vuex-class-0.3.1.tgz#3c0b946bcff4cf2be1904de5b0cab1a3dd5c41d5"
 
 vuex@^3.0.1:
   version "3.0.1"
