@@ -1,8 +1,9 @@
 import Vuex from 'vuex'
 import * as root from './root'
-import * as people from './modules/people'
+import * as demo from './demo'
+import * as demoInterface from './demo/interface'
 interface ModulesStates {
-  people: people.State
+  demo: demoInterface.State
 }
 
 export type RootState = root.State & ModulesStates
@@ -14,7 +15,7 @@ const createStore = () => {
     mutations: root.mutations,
     actions: root.actions,
     modules: {
-      [people.name]: people
+      [demo.name]: demo
     }
   })
 }
