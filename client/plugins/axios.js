@@ -4,11 +4,6 @@ import qs from 'qs'
 class Ajax {
   constructor(options) {
     this.commonPath = (options || {}).commonPath ? options.commonPath : 'api/v1'
-    this.getMap = {}
-    this.postMap = {}
-    this.putWayMap = {}
-    this.patchMap = {}
-    this.deleteMap = {}
   }
 
   /**
@@ -34,38 +29,19 @@ class Ajax {
     return path
   }
 
-  get(path, prevConfig = { cache: false, returnRes: true }) {
-    if (!this.getMap[path]) {
-      this.getMap[path] = (params, lastConfig) => {
-        const config = { ...prevConfig, ...lastConfig }
-        if (!config.cache) {
-          const headers = (config.headers = config.headers || {})
-          headers['Cache-Control'] = 'no-cahce'
-          headers['If-Modified-Since'] = '0'
-        }
-        // 将参数直接拼接到path中
-        path = this.parse(path, params)
-        const commonPath = config.commonPath || this.commonPath
-        return axios
-          .get(commonPath + path, config)
-          .then(res => (config.returnRes ? res : res.data), res => res)
-          .catch(err => {
-            throw new Error(JSON.stringify(res))
-          })
-      }
-    }
-    return this.getMap[path]
-  }
-
-  post(path, prevConfig = { cache: false, returnRes: true }) {
-    return common(
-      'post',
-      path,
-      (prevConfig = { cache: false, returnRes: true })
-    )()
-  }
-
-  common(method, path, prevConfig = { cache: false, returnRes: true }) {
+  /**
+   * 通用 http 请求方法
+   * @param method
+   * @param path
+   * @param prevConfig = {
+   *          cache: false| true 是否开启缓存
+   *          emulateJson: false | true 传入 true，则参数将以 formData 的方式传递,
+   *          returnRes: false | true 是否不直接返回前端所要的数据
+   *        }
+   * @returns {*}
+   */
+  request(method, path, prevConfig) {
+    !this[`${method}Map`] && (this[`${method}Map`] = {})
     let cacheFun = this[`${method}Map`][path]
     if (!cacheFun) {
       cacheFun = (params, lastConfig) => {
@@ -85,9 +61,6 @@ class Ajax {
           config.data = params
         }
         const commonPath = config.commonPath || this.commonPath
-        // return axios.get(commonPath + path, params, config)
-        // 	.then(res => config.returnRes ? res : res.data, res => res)
-        // 	.cache(err => throw new Error(JSON.stringify(res)))
         return axios({
           method,
           url: commonPath + path,
@@ -95,11 +68,19 @@ class Ajax {
         })
           .then(res => (config.returnRes ? res : res.data), res => res)
           .catch(err => {
-            throw new Error(JSON.stringify(res))
+            throw new Error(JSON.stringify(err))
           })
       }
     }
     return cacheFun
+  }
+
+  get() {
+    return this.request('get', ...arguments)
+  }
+
+  post() {
+    return this.request('post', ...arguments)
   }
 }
 

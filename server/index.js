@@ -1,4 +1,5 @@
 const Koa = require('koa')
+const koaBody = require('koa-body')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
@@ -19,6 +20,34 @@ async function start() {
     const builder = new Builder(nuxt)
     await builder.build()
   }
+
+  /* 统一的错误处理中间件 */
+  app.use(async (ctx, next) => {
+    try {
+      console.log(`request with path ${ctx.request.path}`)
+      await next()
+    } catch (err) {
+      console.log(err)
+      ctx.status = 500
+      if (isDev) {
+        ctx.body = err.message
+      } else {
+        ctx.body = 'please try again later'
+      }
+    }
+  })
+
+  app.use(koaBody())
+  app.use(async (ctx, next) => {
+    if (ctx.path === '/api/v1/hehe') {
+      // ctx.status = 200
+      ctx.body = {
+        name: 'Vic'
+      }
+    } else {
+      await next()
+    }
+  })
 
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset

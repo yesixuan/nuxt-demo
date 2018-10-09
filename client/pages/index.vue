@@ -16,7 +16,9 @@ export default {
     // 这个配置文件在配置文件以及项目代码中都可以使用
     // console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     ajax
-      .get('/hehe')({ hehe: 'haha' })
+      .post('/hehe', { emulateJson: true, returnRes: true, cache: true })({
+        hehe: 'haha'
+      })
       .then(res => {
         console.log(res)
       })
