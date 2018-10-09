@@ -2,16 +2,24 @@
   <section class="container">
     <div class="wrapper">
       demo
+      <JsxComponent/>
     </div>
   </section>
 </template>
 
 <script>
+import ajax from '../plugins/axios'
+import JsxComponent from '../components/jsxComponent'
 export default {
-  components: {},
+  components: { JsxComponent },
   mounted() {
     // 这个配置文件在配置文件以及项目代码中都可以使用
-    console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+    // console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+    ajax
+      .get('/hehe')({ hehe: 'haha' })
+      .then(res => {
+        console.log(res)
+      })
   }
 }
 </script>

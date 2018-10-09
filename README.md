@@ -6,14 +6,14 @@
 
 通用改造
 - [x] 项目目录改造
-- [ ] 环境变量的配置
-- [ ] 全局样式引入
-- [ ] postCss 配置
-- [ ] babel、babelPolyfill
-- [ ] 全局的 js 如何引入
+- [x] 环境变量的配置
+- [x] 全局样式引入
+- [x] postCss 配置
+- [x] babel、babelPolyfill
+- [x] 全局的 js 如何引入
 - [ ] 不同环境处理不同逻辑的解决方案
-- [ ] jsx 支持
-- [ ] ts 支持
+- [x] jsx 支持
+- [x] ts 支持
 - [ ] axios 定制  
 - [ ] vuex 代码组织
 - [ ] 代码分割配置
