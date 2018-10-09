@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ajax from '../plugins/axios'
+import ajax from '../common/ajax'
 import JsxComponent from '../components/jsxComponent'
 export default {
   components: { JsxComponent },

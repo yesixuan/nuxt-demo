@@ -40,7 +40,7 @@ async function start() {
   app.use(koaBody())
   app.use(async (ctx, next) => {
     if (ctx.path === '/api/v1/hehe') {
-      // ctx.status = 200
+      ctx.status = 500
       ctx.body = {
         name: 'Vic'
       }
