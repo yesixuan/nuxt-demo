@@ -26,12 +26,12 @@ async function start() {
   /* 统一的错误处理中间件 */
   app.use(async (ctx, next) => {
     try {
-      console.log(`request with path ${ctx.request.path}`)
+      console.log(`request with path ${ctx.request.href}`)
       await next()
     } catch (err) {
       console.log(err)
       ctx.status = 500
-      if (isDev) {
+      if (config.dev) {
         ctx.body = err.message
       } else {
         ctx.body = 'please try again later'

@@ -4,28 +4,42 @@
       demo
       <JsxComponent/>
       <VuexDemo/>
+      <!--<pre>index page: {{ JSON.stringify(res) }}</pre>-->
     </div>
   </section>
 </template>
 
 <script>
-import ajax from '../common/ajax'
+import axios from 'axios'
 import JsxComponent from '../components/jsxComponent'
 import VuexDemo from '../components/vuexDemo'
+import { test } from '../apis/demo'
+import {
+  createNamespacedHelpers,
+  mapMutations as mapRootMutations, // 在一个组件中既要用到全局状态，又要用到模块中的状态时，防止重名
+  mapGetters as mapRootGetters
+} from 'vuex'
+
+const {
+  mapMutations,
+  mapState,
+  mapActions,
+  mapGetters
+} = createNamespacedHelpers('moduleDemo')
+
 export default {
   components: { JsxComponent, VuexDemo },
-  mounted() {
-    // 这个配置文件在配置文件以及项目代码中都可以使用
-    // console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-    ajax
-      .post('/demo/hehe', { emulateJson: true, returnRes: false, cache: true })(
-        {
-          hehe: 'haha'
-        }
-      )
-      .then(res => {
-        console.log(res)
-      })
+  computed: {
+    ...mapGetters(['res'])
+  },
+  methods: {
+    ...mapMutations(['TEST_API']),
+    ...mapActions(['testApi'])
+  },
+  async fetch({ store, params }) {
+    // const res = await test('/demo/hehe')
+    const res = await axios.get('https://www.baidu.com')
+    store.commit('moduleDemo/TEST_API', res)
   }
 }
 </script>

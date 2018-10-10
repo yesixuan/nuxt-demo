@@ -9,9 +9,9 @@ import * as moduleDemo from './moduleDemo'
 Vue.use(Vuex)
 
 const rootStore = {
-  state: {
+  state: () => ({
     counter: 0
-  },
+  }),
   mutations: {
     increment(state) {
       state.counter++

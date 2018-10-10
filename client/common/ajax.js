@@ -80,6 +80,7 @@ class Ajax {
    * @returns 与正常接口格式相同的数据结构
    */
   normalizeRes(res) {
+    console.log('来到 normalizeRes 了', res)
     if (res && typeof res.data === 'string') {
       res.data = {
         code: -1,
@@ -162,7 +163,10 @@ class Ajax {
         })
           .then(res => (config.returnRes ? res : res.data), res => res)
           .catch(err => {
-            console.log('errerrerrerrerr', err)
+            console.log('*******************', err.toString())
+            console.log(commonPath + path)
+            console.log('++++++++++++++++++++', JSON.stringify(err))
+            return err.toString()
             throw new Error(JSON.stringify(err))
           })
       }
