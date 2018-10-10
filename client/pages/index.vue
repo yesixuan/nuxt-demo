@@ -3,6 +3,7 @@
     <div class="wrapper">
       demo
       <JsxComponent/>
+      <VuexDemo/>
     </div>
   </section>
 </template>
@@ -10,15 +11,18 @@
 <script>
 import ajax from '../common/ajax'
 import JsxComponent from '../components/jsxComponent'
+import VuexDemo from '../components/vuexDemo'
 export default {
-  components: { JsxComponent },
+  components: { JsxComponent, VuexDemo },
   mounted() {
     // 这个配置文件在配置文件以及项目代码中都可以使用
     // console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     ajax
-      .post('/hehe', { emulateJson: true, returnRes: true, cache: true })({
-        hehe: 'haha'
-      })
+      .post('/demo/hehe', { emulateJson: true, returnRes: false, cache: true })(
+        {
+          hehe: 'haha'
+        }
+      )
       .then(res => {
         console.log(res)
       })

@@ -3,6 +3,8 @@ const koaBody = require('koa-body')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
+const demoRouter = require('./demoRouter')
+
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
@@ -38,16 +40,8 @@ async function start() {
   })
 
   app.use(koaBody())
-  app.use(async (ctx, next) => {
-    if (ctx.path === '/api/v1/hehe') {
-      ctx.status = 500
-      ctx.body = {
-        name: 'Vic'
-      }
-    } else {
-      await next()
-    }
-  })
+  // 服务端路由引入
+  app.use(demoRouter.routes()).use(demoRouter.allowedMethods())
 
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset
