@@ -6,6 +6,12 @@ class Ajax {
   constructor(options) {
     this.commonPath = (options || {}).commonPath ? options.commonPath : 'api/v1'
     this.isLogin = false
+    // 通用拦截器（全局的成功后的回调函数，用作去掉 loading 等操作）
+    if (options && typeof options.success === 'function') {
+      this.success = options.success
+    } else {
+      this.success = res => {}
+    }
     this.initInterceptor()
   }
   initInterceptor() {
@@ -167,9 +173,17 @@ class Ajax {
   get() {
     return this.request('get', ...arguments)
   }
-
   post() {
     return this.request('post', ...arguments)
+  }
+  put() {
+    return this.request('put', ...arguments)
+  }
+  patch() {
+    return this.request('patch', ...arguments)
+  }
+  delete() {
+    return this.request('delete', ...arguments)
   }
 }
 
