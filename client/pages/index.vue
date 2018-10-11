@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+import http from '../common/ajax'
 import JsxComponent from '../components/jsxComponent'
 import VuexDemo from '../components/vuexDemo'
-import { test } from '../apis/demo'
+// import { test } from '../apis/demo'
 import {
   createNamespacedHelpers,
   mapMutations as mapRootMutations, // 在一个组件中既要用到全局状态，又要用到模块中的状态时，防止重名
@@ -37,9 +37,7 @@ export default {
     ...mapActions(['testApi'])
   },
   async fetch({ store, params }) {
-    // const res = await test('/demo/hehe')
-    const res = await axios.get('https://www.baidu.com')
-    store.commit('moduleDemo/TEST_API', res)
+    await store.dispatch('moduleDemo/testApi')
   }
 }
 </script>

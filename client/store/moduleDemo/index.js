@@ -32,6 +32,7 @@ export const mutations = {
     state.count1 += payload
   },
   [types.TEST_API](state, payload) {
+    console.log('*******************', payload)
     state.res = payload
   }
 }
@@ -46,7 +47,7 @@ export const actions = {
   async testApi({ commit, state }) {
     const res = await test()
     // const res = await { test: 'Vic' }
-    commit(types.TEST_API, res)
+    commit(types.TEST_API, res.data)
     return res
   }
 }

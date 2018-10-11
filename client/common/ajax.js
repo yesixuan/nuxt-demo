@@ -4,6 +4,7 @@ import getCookie from './cookie'
 
 class Ajax {
   constructor(options) {
+    this.axios = axios.create()
     this.commonPath = (options || {}).commonPath ? options.commonPath : 'api/v1'
     this.isLogin = false
     // 通用拦截器（全局的成功后的回调函数，用作去掉 loading 等操作）
@@ -16,13 +17,14 @@ class Ajax {
   }
   initInterceptor() {
     // 给POST请求头加上x-crsf-token
-    axios.interceptors.request.use(
+    this.axios.interceptors.request.use(
       config => {
-        let csrftoken = getCookie('csrf-token')
         if (
           !/^(GET|HEAD|OPTIONS|TRACE)$/i.test(config.method) &&
-          !axios.credentials
+          !this.axios.credentials &&
+          process.client // 浏览器环境才找 cookie
         ) {
+          const csrftoken = getCookie('csrf-token')
           config.headers.common['X-CSRF-Token'] = csrftoken
         }
         return config
@@ -32,7 +34,7 @@ class Ajax {
       }
     )
     // ajax 全局错误处理
-    axios.interceptors.response.use(
+    this.axios.interceptors.response.use(
       response => {
         this.success(response)
         return response
@@ -68,7 +70,7 @@ class Ajax {
               break
           }
           const res = this.normalizeRes(err.response)
-          return Promise.reject(res.data) // 返回接口返回的错误信息
+          return Promise.reject(res.data || res) // 返回接口返回的错误信息
         }
       }
     )
@@ -80,7 +82,6 @@ class Ajax {
    * @returns 与正常接口格式相同的数据结构
    */
   normalizeRes(res) {
-    console.log('来到 normalizeRes 了', res)
     if (res && typeof res.data === 'string') {
       res.data = {
         code: -1,
@@ -156,18 +157,22 @@ class Ajax {
           config.data = params
         }
         const commonPath = config.commonPath || this.commonPath
-        return axios({
+        return this.axios({
           method,
           url: commonPath + path,
           ...config
         })
-          .then(res => (config.returnRes ? res : res.data), res => res)
+          .then(
+            res => {
+              return config.returnRes ? res : res.data
+            },
+            res => {
+              return res
+            }
+          )
           .catch(err => {
-            console.log('*******************', err.toString())
-            console.log(commonPath + path)
-            console.log('++++++++++++++++++++', JSON.stringify(err))
             return err.toString()
-            throw new Error(JSON.stringify(err))
+            // throw new Error(JSON.stringify(err))
           })
       }
     }
