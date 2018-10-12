@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import http from '../common/ajax'
+import axios from 'axios'
 import JsxComponent from '../components/jsxComponent'
 import VuexDemo from '../components/vuexDemo'
 // import { test } from '../apis/demo'
@@ -38,6 +38,14 @@ export default {
   },
   async fetch({ store, params }) {
     await store.dispatch('moduleDemo/testApi')
+    axios
+      .create()
+      .post('/api/v1/demo/hehe')
+      .then(
+        res => console.log('-----------------', res),
+        res => console.log('++++++++++++++++++++', res)
+      )
+      .catch(err => console.log('********************', err))
   }
 }
 </script>

@@ -5,7 +5,9 @@ import getCookie from './cookie'
 class Ajax {
   constructor(options) {
     this.axios = axios.create()
-    this.commonPath = (options || {}).commonPath ? options.commonPath : 'api/v1'
+    this.commonPath = (options || {}).commonPath
+      ? options.commonPath
+      : '/api/v1'
     this.isLogin = false
     // 通用拦截器（全局的成功后的回调函数，用作去掉 loading 等操作）
     if (options && typeof options.success === 'function') {
@@ -51,20 +53,20 @@ class Ajax {
             case 504:
               console.log('请求超时')
               break
-            case 400: // 用户没有csrf-token
-            case 401: // 用户没有登录态
-              if (!this.isLogin) {
-                // 只使第一次401的hash
-                this.isLogin = true
-                if (window.location.pathname || window.location.hash) {
-                  this.next = encodeURIComponent(
-                    window.location.pathname + window.location.hash
-                  )
-                }
-                const redirect = '/login?next=' + this.next
-                window.location.href = location.origin + redirect
-              }
-              break
+            // case 400: // 用户没有csrf-token
+            // case 401: // 用户没有登录态
+            //   if (!this.isLogin && process.client) {
+            //     // 只使第一次401的hash
+            //     this.isLogin = true
+            //     if (window.location.pathname || window.location.hash) {
+            //       this.next = encodeURIComponent(
+            //         window.location.pathname + window.location.hash
+            //       )
+            //     }
+            //     const redirect = '/login?next=' + this.next
+            //     window.location.href = location.origin + redirect
+            //   }
+            //   break
             default:
               console.log('error:' + err.response.status)
               break
@@ -157,6 +159,7 @@ class Ajax {
           config.data = params
         }
         const commonPath = config.commonPath || this.commonPath
+        console.log('commonPath + path', commonPath + path)
         return this.axios({
           method,
           url: commonPath + path,
