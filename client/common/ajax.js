@@ -4,7 +4,7 @@ import getCookie from './cookie'
 
 class Ajax {
   constructor(options) {
-    this.axios = axios.create()
+    this.axios = axios.create({ baseURL: process.env.baseUrl })
     this.commonPath = (options || {}).commonPath
       ? options.commonPath
       : '/api/v1'

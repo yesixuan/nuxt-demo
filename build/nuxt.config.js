@@ -31,6 +31,9 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
   srcDir: 'client/',
   build: {
     ...commonConfig,

@@ -37,15 +37,14 @@ export default {
     ...mapActions(['testApi'])
   },
   async fetch({ store, params }) {
-    await store.dispatch('moduleDemo/testApi')
     axios
-      .create()
       .post('/api/v1/demo/hehe')
       .then(
         res => console.log('-----------------', res),
         res => console.log('++++++++++++++++++++', res)
       )
       .catch(err => console.log('********************', err))
+    await store.dispatch('moduleDemo/testApi')
   }
 }
 </script>
