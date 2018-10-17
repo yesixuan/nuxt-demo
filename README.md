@@ -24,11 +24,11 @@
 - [x] mock
 - [x] pwa
 - [x] sentry 集成
+- [ ] proxy
 - [ ] 移动端的
 - [ ] c-element-ui
 - [ ] cvux
 - [ ] 测试用例
-- [ ] proxy
 
 更多
 - [ ] cdn
