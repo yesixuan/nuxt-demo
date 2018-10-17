@@ -22,6 +22,8 @@
 
 公司的定制
 - [ ] sentry 集成
+- [ ] mock
+- [ ] pwa
 - [ ] 移动端的
 - [ ] c-element-ui
 - [ ] c-vux
