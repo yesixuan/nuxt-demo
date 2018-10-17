@@ -25,9 +25,17 @@ module.exports = {
       src: '~/plugins/index.js',
       ssr: false
     },
-    { src: '~/plugins/mock.js', ssr: false }
+    {
+      src: '~/plugins/mock.js',
+      ssr: false
+    }
   ],
-  modules: ['@nuxtjs/axios', '~/modules/test.js'],
+  modules: [
+    '~/modules/test.js',
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    '@nuxtjs/sentry'
+  ],
   vendor: ['vue-router', '@nuxtjs/axios'],
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
@@ -39,5 +47,29 @@ module.exports = {
   build: {
     ...commonConfig,
     ...envConfig
+  },
+  sentry: {
+    public_key: '',
+    private_key: '',
+    project_id: '',
+    config: {
+      // Additional config
+    }
+  },
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: 'https://xxx/.*', // 协议必须是https
+        method: 'GET',
+        handler: 'cacheFirst',
+        strategyOptions: {
+          cacheName: 'pghead_v1',
+          cacheExpiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 10 * 60 * 100
+          }
+        }
+      }
+    ]
   }
 }

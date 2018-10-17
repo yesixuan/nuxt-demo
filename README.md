@@ -21,13 +21,14 @@
 - [x] 聚合层代码组织 
 
 公司的定制
-- [ ] mock
-- [ ] workbox
-- [ ] sentry 集成
+- [x] mock
+- [x] pwa
+- [x] sentry 集成
 - [ ] 移动端的
 - [ ] c-element-ui
 - [ ] cvux
 - [ ] 测试用例
+- [ ] proxy
 
 更多
 - [ ] cdn
