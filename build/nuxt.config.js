@@ -24,7 +24,8 @@ module.exports = {
     {
       src: '~/plugins/index.js',
       ssr: false
-    }
+    },
+    { src: '~/plugins/mock.js', ssr: false }
   ],
   modules: ['@nuxtjs/axios', '~/modules/test.js'],
   vendor: ['vue-router', '@nuxtjs/axios'],
